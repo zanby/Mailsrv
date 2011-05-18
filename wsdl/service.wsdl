@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Campaign" targetNamespace="http://warecorp.com/soap/mailserver" xmlns:tns="http://warecorp.com/soap/mailserver" xmlns:impl="http://warecorp.com/soap/mailserver" xmlns:xsd1="http://warecorp.com/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://warecorp.com/soap/mailserver">
+      <complexType name="Recipients">
+        <sequence>
+            <element minOccurs="0" maxOccurs="unbounded" name="recipients" type="tns:Recipient"/>
+        </sequence>
+      </complexType>
+      <complexType name="Recipient">
+        <sequence>
+            <element minOccurs="1" maxOccurs="1" name="email" type="string"/>
+            <element minOccurs="1" maxOccurs="1" name="name" type="string"/>
+            <element minOccurs="1" maxOccurs="1" name="locale" type="string"/>
+            <element minOccurs="0" maxOccurs="unbounded" name="params" type="tns:Param"/>
+        </sequence>
+      </complexType>
+      <complexType name="Callback">
+        <sequence>
+            <element minOccurs="1" maxOccurs="1" name="type" type="string"/>
+            <element minOccurs="1" maxOccurs="1" name="wsdl" type="string"/>
+            <element minOccurs="1" maxOccurs="1" name="action" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="Params">
+        <sequence>
+            <element minOccurs="0" maxOccurs="unbounded" name="params" type="tns:Param"/>
+        </sequence>
+      </complexType>
+      <complexType name="Param">
+        <sequence>
+            <element minOccurs="1" maxOccurs="1" name="key" type="string"/>
+            <element minOccurs="1" maxOccurs="1" name="value" type="string"/>
+        </sequence>
+      </complexType>
+    </schema>
+  </types>
+  <portType name="CampaignPortType">
+    <operation name="testCampaign">
+      <input message="tns:TestCampaignRequest"/>
+      <output message="tns:TestCampaignResponse"/>
+    </operation>
+    <operation name="createCampaign">
+      <input message="tns:CreateCampaignRequest"/>
+      <output message="tns:CreateCampaignResponse"/>
+    </operation>
+    <operation name="setSender" parameterOrder="uid email name">
+      <input message="tns:SetSenderRequest"/>
+      <output message="tns:SetSenderResponse"/>
+    </operation>
+    <operation name="addRecipients" parameterOrder="uid recipiens">
+      <input message="tns:AddRecipientsRequest"/>
+      <output message="tns:AddRecipientsResponse"/>
+    </operation>
+    <operation name="addRecipient" parameterOrder="uid recipient">
+      <input message="tns:AddRecipientRequest"/>
+      <output message="tns:AddRecipientResponse"/>
+    </operation>
+    <operation name="setSubject" parameterOrder="uid subject">
+      <input message="tns:SetSubjectRequest"/>
+      <output message="tns:SetSubjectResponse"/>
+    </operation>
+    <operation name="setHtml" parameterOrder="uid html">
+      <input message="tns:SetHtmlRequest"/>
+      <output message="tns:SetHtmlResponse"/>
+    </operation>
+    <operation name="setPlain" parameterOrder="uid plain">
+      <input message="tns:SetPlainRequest"/>
+      <output message="tns:SetPlainResponse"/>
+    </operation>
+    <operation name="addParams" parameterOrder="uid params">
+      <input message="tns:AddParamsRequest"/>
+      <output message="tns:AddParamsResponse"/>
+    </operation>
+    <operation name="addParam" parameterOrder="uid name value">
+      <input message="tns:AddParamRequest"/>
+      <output message="tns:AddParamResponse"/>
+    </operation>
+    <operation name="addEmbededImage" parameterOrder="uid imageName imageSource">
+      <input message="tns:AddEmbededImageRequest"/>
+      <output message="tns:AddEmbededImageResponse"/>
+    </operation>
+    <operation name="setTemplate" parameterOrder="uid templateUid instanceKey">
+      <input message="tns:SetTemplateRequest"/>
+      <output message="tns:SetTemplateResponse"/>
+    </operation>
+    <operation name="setDeliveryDate" parameterOrder="uid date timezone">
+      <input message="tns:SetDeliveryDateRequest"/>
+      <output message="tns:SetDeliveryDateResponse"/>
+    </operation>
+    <operation name="addCallback" parameterOrder="uid callback">
+      <input message="tns:AddCallbackRequest"/>
+      <output message="tns:AddCallbackResponse"/>
+    </operation>
+    <operation name="addCallbackParam" parameterOrder="callbackUID name value">
+      <input message="tns:AddCallbackParamRequest"/>
+      <output message="tns:AddCallbackParamResponse"/>
+    </operation>
+    <operation name="addHeader" parameterOrder="uid name value">
+      <input message="tns:AddHeaderRequest"/>
+      <output message="tns:AddHeaderResponse"/>
+    </operation>
+    <operation name="addPMBMessage" parameterOrder="uid subject message">
+      <input message="tns:AddPMBMessageRequest"/>
+      <output message="tns:AddPMBMessageResponse"/>
+    </operation>
+    <operation name="addPMBSubject" parameterOrder="uid subject">
+      <input message="tns:AddPMBSubjectRequest"/>
+      <output message="tns:AddPMBSubjectResponse"/>
+    </operation>
+    <operation name="addPMBBody" parameterOrder="uid body">
+      <input message="tns:AddPMBBodyRequest"/>
+      <output message="tns:AddPMBBodyResponse"/>
+    </operation>
+    <operation name="startCampaign" parameterOrder="uid">
+      <input message="tns:StartCampaignRequest"/>
+      <output message="tns:StartCampaignResponse"/>
+    </operation>
+    <operation name="removeCampaign" parameterOrder="uid">
+      <input message="tns:RemoveCampaignRequest"/>
+      <output message="tns:RemoveCampaignResponse"/>
+    </operation>
+  </portType>
+  <binding name="CampaignBinding" type="tns:CampaignPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="testCampaign">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#testCampaign"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="createCampaign">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#createCampaign"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setSender">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#setSender"/>
+      <input>
+        <soap:body parts="uid email name" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addRecipients">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addRecipients"/>
+      <input>
+        <soap:body parts="uid recipiens" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addRecipient">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addRecipient"/>
+      <input>
+        <soap:body parts="uid recipient" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setSubject">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#setSubject"/>
+      <input>
+        <soap:body parts="uid subject" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setHtml">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#setHtml"/>
+      <input>
+        <soap:body parts="uid html" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setPlain">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#setPlain"/>
+      <input>
+        <soap:body parts="uid plain" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addParams">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addParams"/>
+      <input>
+        <soap:body parts="uid params" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addParam">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addParam"/>
+      <input>
+        <soap:body parts="uid name value" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addEmbededImage">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addEmbededImage"/>
+      <input>
+        <soap:body parts="uid imageName imageSource" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setTemplate">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#setTemplate"/>
+      <input>
+        <soap:body parts="uid templateUid instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setDeliveryDate">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#setDeliveryDate"/>
+      <input>
+        <soap:body parts="uid date timezone" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addCallback">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addCallback"/>
+      <input>
+        <soap:body parts="uid callback" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addCallbackParam">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addCallbackParam"/>
+      <input>
+        <soap:body parts="callbackUID name value" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addHeader">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addHeader"/>
+      <input>
+        <soap:body parts="uid name value" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addPMBMessage">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addPMBMessage"/>
+      <input>
+        <soap:body parts="uid subject message" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addPMBSubject">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addPMBSubject"/>
+      <input>
+        <soap:body parts="uid subject" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addPMBBody">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#addPMBBody"/>
+      <input>
+        <soap:body parts="uid body" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="startCampaign">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#startCampaign"/>
+      <input>
+        <soap:body parts="uid" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="removeCampaign">
+      <soap:operation soapAction="urn:Campaign#CampaignServer#removeCampaign"/>
+      <input>
+        <soap:body parts="uid" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="TestCampaignRequest"/>
+  <message name="TestCampaignResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="CreateCampaignRequest"/>
+  <message name="CreateCampaignResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="SetSenderRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="email" type="xsd:string"/>
+    <part name="name" type="xsd:string"/>
+  </message>
+  <message name="SetSenderResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddRecipientsRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="recipiens" type="tns:Recipients"/>
+  </message>
+  <message name="AddRecipientsResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddRecipientRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="recipient" type="tns:Recipient"/>
+  </message>
+  <message name="AddRecipientResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SetSubjectRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+  </message>
+  <message name="SetSubjectResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SetHtmlRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="html" type="xsd:string"/>
+  </message>
+  <message name="SetHtmlResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SetPlainRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="plain" type="xsd:string"/>
+  </message>
+  <message name="SetPlainResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddParamsRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="params" type="tns:Params"/>
+  </message>
+  <message name="AddParamsResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddParamRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="name" type="xsd:string"/>
+    <part name="value" type="xsd:string"/>
+  </message>
+  <message name="AddParamResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddEmbededImageRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="imageName" type="xsd:string"/>
+    <part name="imageSource" type="xsd:base64Binary"/>
+  </message>
+  <message name="AddEmbededImageResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SetTemplateRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="templateUid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="SetTemplateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SetDeliveryDateRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="date" type="xsd:string"/>
+    <part name="timezone" type="xsd:string"/>
+  </message>
+  <message name="SetDeliveryDateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddCallbackRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="callback" type="tns:Callback"/>
+  </message>
+  <message name="AddCallbackResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="AddCallbackParamRequest">
+    <part name="callbackUID" type="xsd:string"/>
+    <part name="name" type="xsd:string"/>
+    <part name="value" type="xsd:string"/>
+  </message>
+  <message name="AddCallbackParamResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddHeaderRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="name" type="xsd:string"/>
+    <part name="value" type="xsd:string"/>
+  </message>
+  <message name="AddHeaderResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddPMBMessageRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+    <part name="message" type="xsd:string"/>
+  </message>
+  <message name="AddPMBMessageResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddPMBSubjectRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+  </message>
+  <message name="AddPMBSubjectResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddPMBBodyRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="body" type="xsd:string"/>
+  </message>
+  <message name="AddPMBBodyResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="StartCampaignRequest">
+    <part name="uid" type="xsd:string"/>
+  </message>
+  <message name="StartCampaignResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="RemoveCampaignRequest">
+    <part name="uid" type="xsd:string"/>
+  </message>
+  <message name="RemoveCampaignResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="CampaignService">
+    <port name="CampaignPort" binding="tns:CampaignBinding">
+      <soap:address location="http://mail_server.sukharev.buick/mail.server.php"/>
+    </port>
+  </service>
+</definitions>

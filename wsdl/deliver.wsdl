@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Deliver" targetNamespace="http://warecorp.com/soap/mailserver" xmlns:tns="http://warecorp.com/soap/mailserver" xmlns:impl="http://warecorp.com/soap/mailserver" xmlns:xsd1="http://warecorp.com/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://warecorp.com/soap/mailserver">
+      <complexType name="ArrayOfint">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:int[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </types>
+  <portType name="DeliverPortType">
+    <operation name="start" parameterOrder="iterations executionTime">
+      <input message="tns:StartRequest"/>
+      <output message="tns:StartResponse"/>
+    </operation>
+    <operation name="send" parameterOrder="records">
+      <input message="tns:SendRequest"/>
+      <output message="tns:SendResponse"/>
+    </operation>
+    <operation name="sendRaw" parameterOrder="records">
+      <input message="tns:SendRawRequest"/>
+      <output message="tns:SendRawResponse"/>
+    </operation>
+    <operation name="verify">
+      <input message="tns:VerifyRequest"/>
+      <output message="tns:VerifyResponse"/>
+    </operation>
+    <operation name="log">
+      <input message="tns:LogRequest"/>
+      <output message="tns:LogResponse"/>
+    </operation>
+  </portType>
+  <binding name="DeliverBinding" type="tns:DeliverPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="start">
+      <soap:operation soapAction="urn:Deliver#DeliverServer#start"/>
+      <input>
+        <soap:body parts="iterations executionTime" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="send">
+      <soap:operation soapAction="urn:Deliver#DeliverServer#send"/>
+      <input>
+        <soap:body parts="records" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="sendRaw">
+      <soap:operation soapAction="urn:Deliver#DeliverServer#sendRaw"/>
+      <input>
+        <soap:body parts="records" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="verify">
+      <soap:operation soapAction="urn:Deliver#DeliverServer#verify"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="log">
+      <soap:operation soapAction="urn:Deliver#DeliverServer#log"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="StartRequest">
+    <part name="iterations" type="xsd:int"/>
+    <part name="executionTime" type="xsd:int"/>
+  </message>
+  <message name="StartResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SendRequest">
+    <part name="records" type="tns:ArrayOfint"/>
+  </message>
+  <message name="SendResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SendRawRequest">
+    <part name="records" type="xsd:int"/>
+  </message>
+  <message name="SendRawResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="VerifyRequest"/>
+  <message name="VerifyResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="LogRequest"/>
+  <message name="LogResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="DeliverService">
+    <port name="DeliverPort" binding="tns:DeliverBinding">
+      <soap:address location="http://mail_server.sukharev.buick/mail.server.deliver.php"/>
+    </port>
+  </service>
+</definitions>

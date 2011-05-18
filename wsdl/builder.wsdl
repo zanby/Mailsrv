@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Builder" targetNamespace="http://warecorp.com/soap/mailserver" xmlns:tns="http://warecorp.com/soap/mailserver" xmlns:impl="http://warecorp.com/soap/mailserver" xmlns:xsd1="http://warecorp.com/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://warecorp.com/soap/mailserver">
+      <complexType name="ArrayOfint">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:int[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </types>
+  <portType name="BuilderPortType">
+    <operation name="start" parameterOrder="iterations executionTime">
+      <input message="tns:StartRequest"/>
+      <output message="tns:StartResponse"/>
+    </operation>
+    <operation name="build" parameterOrder="records">
+      <input message="tns:BuildRequest"/>
+      <output message="tns:BuildResponse"/>
+    </operation>
+    <operation name="buildCampaign" parameterOrder="records">
+      <input message="tns:BuildCampaignRequest"/>
+      <output message="tns:BuildCampaignResponse"/>
+    </operation>
+    <operation name="verify">
+      <input message="tns:VerifyRequest"/>
+      <output message="tns:VerifyResponse"/>
+    </operation>
+    <operation name="verifyDeliveryDate">
+      <input message="tns:VerifyDeliveryDateRequest"/>
+      <output message="tns:VerifyDeliveryDateResponse"/>
+    </operation>
+    <operation name="closeProcessedCampaigns">
+      <input message="tns:CloseProcessedCampaignsRequest"/>
+      <output message="tns:CloseProcessedCampaignsResponse"/>
+    </operation>
+  </portType>
+  <binding name="BuilderBinding" type="tns:BuilderPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="start">
+      <soap:operation soapAction="urn:Builder#BuilderServer#start"/>
+      <input>
+        <soap:body parts="iterations executionTime" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="build">
+      <soap:operation soapAction="urn:Builder#BuilderServer#build"/>
+      <input>
+        <soap:body parts="records" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="buildCampaign">
+      <soap:operation soapAction="urn:Builder#BuilderServer#buildCampaign"/>
+      <input>
+        <soap:body parts="records" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="verify">
+      <soap:operation soapAction="urn:Builder#BuilderServer#verify"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="verifyDeliveryDate">
+      <soap:operation soapAction="urn:Builder#BuilderServer#verifyDeliveryDate"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="closeProcessedCampaigns">
+      <soap:operation soapAction="urn:Builder#BuilderServer#closeProcessedCampaigns"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="StartRequest">
+    <part name="iterations" type="xsd:int"/>
+    <part name="executionTime" type="xsd:int"/>
+  </message>
+  <message name="StartResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="BuildRequest">
+    <part name="records" type="tns:ArrayOfint"/>
+  </message>
+  <message name="BuildResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="BuildCampaignRequest">
+    <part name="records" type="xsd:int"/>
+  </message>
+  <message name="BuildCampaignResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="VerifyRequest"/>
+  <message name="VerifyResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="VerifyDeliveryDateRequest"/>
+  <message name="VerifyDeliveryDateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="CloseProcessedCampaignsRequest"/>
+  <message name="CloseProcessedCampaignsResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="BuilderService">
+    <port name="BuilderPort" binding="tns:BuilderBinding">
+      <soap:address location="http://mail_server.sukharev.buick/mail.server.builder.php"/>
+    </port>
+  </service>
+</definitions>

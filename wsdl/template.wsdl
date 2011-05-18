@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Template" targetNamespace="http://warecorp.com/soap/mailserver" xmlns:tns="http://warecorp.com/soap/mailserver" xmlns:impl="http://warecorp.com/soap/mailserver" xmlns:xsd1="http://warecorp.com/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <portType name="TemplatePortType">
+    <operation name="testTemplate">
+      <input message="tns:TestTemplateRequest"/>
+      <output message="tns:TestTemplateResponse"/>
+    </operation>
+    <operation name="getDefaultLocale">
+      <input message="tns:GetDefaultLocaleRequest"/>
+      <output message="tns:GetDefaultLocaleResponse"/>
+    </operation>
+    <operation name="getTemplate" parameterOrder="uid instanceKey">
+      <input message="tns:GetTemplateRequest"/>
+      <output message="tns:GetTemplateResponse"/>
+    </operation>
+    <operation name="getRegisteredTemplates" parameterOrder="instanceKey">
+      <input message="tns:GetRegisteredTemplatesRequest"/>
+      <output message="tns:GetRegisteredTemplatesResponse"/>
+    </operation>
+    <operation name="registerTemplate" parameterOrder="html plain subject locale">
+      <input message="tns:RegisterTemplateRequest"/>
+      <output message="tns:RegisterTemplateResponse"/>
+    </operation>
+    <operation name="isRegisteredForImpl" parameterOrder="uid instanceKey">
+      <input message="tns:IsRegisteredForImplRequest"/>
+      <output message="tns:IsRegisteredForImplResponse"/>
+    </operation>
+    <operation name="registerTemplateForImpl" parameterOrder="uid instanceKey html plain subject locale force">
+      <input message="tns:RegisterTemplateForImplRequest"/>
+      <output message="tns:RegisterTemplateForImplResponse"/>
+    </operation>
+    <operation name="unregisterTemplate" parameterOrder="uid instanceKey">
+      <input message="tns:UnregisterTemplateRequest"/>
+      <output message="tns:UnregisterTemplateResponse"/>
+    </operation>
+    <operation name="setDescription" parameterOrder="uid instanceKey description">
+      <input message="tns:SetDescriptionRequest"/>
+      <output message="tns:SetDescriptionResponse"/>
+    </operation>
+    <operation name="addLocalization" parameterOrder="uid instanceKey locale html plain subject">
+      <input message="tns:AddLocalizationRequest"/>
+      <output message="tns:AddLocalizationResponse"/>
+    </operation>
+    <operation name="updateLocalization" parameterOrder="uid instanceKey locale html plain subject">
+      <input message="tns:UpdateLocalizationRequest"/>
+      <output message="tns:UpdateLocalizationResponse"/>
+    </operation>
+    <operation name="updateInstanceAndUidForRegisteredTemplate" parameterOrder="uid newUid instanceKey">
+      <input message="tns:UpdateInstanceAndUidForRegisteredTemplateRequest"/>
+      <output message="tns:UpdateInstanceAndUidForRegisteredTemplateResponse"/>
+    </operation>
+    <operation name="removeLocalization" parameterOrder="uid instanceKey locale">
+      <input message="tns:RemoveLocalizationRequest"/>
+      <output message="tns:RemoveLocalizationResponse"/>
+    </operation>
+    <operation name="getLocalization" parameterOrder="uid instanceKey locale">
+      <input message="tns:GetLocalizationRequest"/>
+      <output message="tns:GetLocalizationResponse"/>
+    </operation>
+    <operation name="getLocalizationEmbededImages" parameterOrder="uid instanceKey locale">
+      <input message="tns:GetLocalizationEmbededImagesRequest"/>
+      <output message="tns:GetLocalizationEmbededImagesResponse"/>
+    </operation>
+    <operation name="addEmbededImage" parameterOrder="uid instanceKey locale imageName imageSource">
+      <input message="tns:AddEmbededImageRequest"/>
+      <output message="tns:AddEmbededImageResponse"/>
+    </operation>
+    <operation name="removeEmbededImage" parameterOrder="uid instanceKey locale imageName">
+      <input message="tns:RemoveEmbededImageRequest"/>
+      <output message="tns:RemoveEmbededImageResponse"/>
+    </operation>
+    <operation name="addPMBMessage" parameterOrder="uid instanceKey locale subject message">
+      <input message="tns:AddPMBMessageRequest"/>
+      <output message="tns:AddPMBMessageResponse"/>
+    </operation>
+    <operation name="activate" parameterOrder="uid instanceKey">
+      <input message="tns:ActivateRequest"/>
+      <output message="tns:ActivateResponse"/>
+    </operation>
+    <operation name="getVersion">
+      <input message="tns:GetVersionRequest"/>
+      <output message="tns:GetVersionResponse"/>
+    </operation>
+  </portType>
+  <binding name="TemplateBinding" type="tns:TemplatePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="testTemplate">
+      <soap:operation soapAction="urn:Template#TemplateServer#testTemplate"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getDefaultLocale">
+      <soap:operation soapAction="urn:Template#TemplateServer#getDefaultLocale"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getTemplate">
+      <soap:operation soapAction="urn:Template#TemplateServer#getTemplate"/>
+      <input>
+        <soap:body parts="uid instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getRegisteredTemplates">
+      <soap:operation soapAction="urn:Template#TemplateServer#getRegisteredTemplates"/>
+      <input>
+        <soap:body parts="instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="registerTemplate">
+      <soap:operation soapAction="urn:Template#TemplateServer#registerTemplate"/>
+      <input>
+        <soap:body parts="html plain subject locale" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="isRegisteredForImpl">
+      <soap:operation soapAction="urn:Template#TemplateServer#isRegisteredForImpl"/>
+      <input>
+        <soap:body parts="uid instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="registerTemplateForImpl">
+      <soap:operation soapAction="urn:Template#TemplateServer#registerTemplateForImpl"/>
+      <input>
+        <soap:body parts="uid instanceKey html plain subject locale force" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="unregisterTemplate">
+      <soap:operation soapAction="urn:Template#TemplateServer#unregisterTemplate"/>
+      <input>
+        <soap:body parts="uid instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="setDescription">
+      <soap:operation soapAction="urn:Template#TemplateServer#setDescription"/>
+      <input>
+        <soap:body parts="uid instanceKey description" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addLocalization">
+      <soap:operation soapAction="urn:Template#TemplateServer#addLocalization"/>
+      <input>
+        <soap:body parts="uid instanceKey locale html plain subject" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="updateLocalization">
+      <soap:operation soapAction="urn:Template#TemplateServer#updateLocalization"/>
+      <input>
+        <soap:body parts="uid instanceKey locale html plain subject" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="updateInstanceAndUidForRegisteredTemplate">
+      <soap:operation soapAction="urn:Template#TemplateServer#updateInstanceAndUidForRegisteredTemplate"/>
+      <input>
+        <soap:body parts="uid newUid instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="removeLocalization">
+      <soap:operation soapAction="urn:Template#TemplateServer#removeLocalization"/>
+      <input>
+        <soap:body parts="uid instanceKey locale" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getLocalization">
+      <soap:operation soapAction="urn:Template#TemplateServer#getLocalization"/>
+      <input>
+        <soap:body parts="uid instanceKey locale" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getLocalizationEmbededImages">
+      <soap:operation soapAction="urn:Template#TemplateServer#getLocalizationEmbededImages"/>
+      <input>
+        <soap:body parts="uid instanceKey locale" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addEmbededImage">
+      <soap:operation soapAction="urn:Template#TemplateServer#addEmbededImage"/>
+      <input>
+        <soap:body parts="uid instanceKey locale imageName imageSource" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="removeEmbededImage">
+      <soap:operation soapAction="urn:Template#TemplateServer#removeEmbededImage"/>
+      <input>
+        <soap:body parts="uid instanceKey locale imageName" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="addPMBMessage">
+      <soap:operation soapAction="urn:Template#TemplateServer#addPMBMessage"/>
+      <input>
+        <soap:body parts="uid instanceKey locale subject message" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="activate">
+      <soap:operation soapAction="urn:Template#TemplateServer#activate"/>
+      <input>
+        <soap:body parts="uid instanceKey" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getVersion">
+      <soap:operation soapAction="urn:Template#TemplateServer#getVersion"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="TestTemplateRequest"/>
+  <message name="TestTemplateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="GetDefaultLocaleRequest"/>
+  <message name="GetDefaultLocaleResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="GetTemplateRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="GetTemplateResponse">
+    <part name="return" type="xsd:array"/>
+  </message>
+  <message name="GetRegisteredTemplatesRequest">
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="GetRegisteredTemplatesResponse">
+    <part name="return" type="xsd:array"/>
+  </message>
+  <message name="RegisterTemplateRequest">
+    <part name="html" type="xsd:string"/>
+    <part name="plain" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+  </message>
+  <message name="RegisterTemplateResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="IsRegisteredForImplRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="IsRegisteredForImplResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="RegisterTemplateForImplRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="html" type="xsd:string"/>
+    <part name="plain" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+    <part name="force" type="xsd:boolean"/>
+  </message>
+  <message name="RegisterTemplateForImplResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="UnregisterTemplateRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="UnregisterTemplateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="SetDescriptionRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="description" type="xsd:string"/>
+  </message>
+  <message name="SetDescriptionResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddLocalizationRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+    <part name="html" type="xsd:string"/>
+    <part name="plain" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+  </message>
+  <message name="AddLocalizationResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="UpdateLocalizationRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+    <part name="html" type="xsd:string"/>
+    <part name="plain" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+  </message>
+  <message name="UpdateLocalizationResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="UpdateInstanceAndUidForRegisteredTemplateRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="newUid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="UpdateInstanceAndUidForRegisteredTemplateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="RemoveLocalizationRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+  </message>
+  <message name="RemoveLocalizationResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="GetLocalizationRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+  </message>
+  <message name="GetLocalizationResponse">
+    <part name="return" type="xsd:array"/>
+  </message>
+  <message name="GetLocalizationEmbededImagesRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+  </message>
+  <message name="GetLocalizationEmbededImagesResponse">
+    <part name="return" type="xsd:array"/>
+  </message>
+  <message name="AddEmbededImageRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+    <part name="imageName" type="xsd:string"/>
+    <part name="imageSource" type="xsd:base64Binary"/>
+  </message>
+  <message name="AddEmbededImageResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="RemoveEmbededImageRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+    <part name="imageName" type="xsd:string"/>
+  </message>
+  <message name="RemoveEmbededImageResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AddPMBMessageRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+    <part name="locale" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+    <part name="message" type="xsd:string"/>
+  </message>
+  <message name="AddPMBMessageResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="ActivateRequest">
+    <part name="uid" type="xsd:string"/>
+    <part name="instanceKey" type="xsd:string"/>
+  </message>
+  <message name="ActivateResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="GetVersionRequest"/>
+  <message name="GetVersionResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <service name="TemplateService">
+    <port name="TemplatePort" binding="tns:TemplateBinding">
+      <soap:address location="http://mail_server.sukharev.buick/mail.server.template.php"/>
+    </port>
+  </service>
+</definitions>

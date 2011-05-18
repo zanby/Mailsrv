@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <application_env>development</application_env>
+    <credentials>
+        <uid></uid>     <!--  valid username  -->
+        <pass></pass>    <!--  valid password  -->
+    </credentials>
+</config>

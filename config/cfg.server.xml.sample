@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <production>
+        <wsdl_cache_enabled>1</wsdl_cache_enabled>                      <!--  -->
+        <server_url></server_url>                                       <!--  -->
+        <db>															<!-- Credentals for using DB -->
+            <host></host>                                           	<!--  -->
+            <port></port>                                   			<!--  -->
+            <username></username>                       				<!--  -->
+            <password></password>           							<!--  -->
+            <name></name>           									<!--  -->
+        </db>
+        <smtp>															<!-- Parameters for SMTP Server -->
+            <use>false</use>											<!--  -->
+            <host></host>												<!--  -->
+            <port></port>												<!--  -->
+        </smtp>
+        <memcache>														<!-- Parameters for using Memcache Server -->
+            <use>false</use>											<!--  -->
+            <host></host>												<!--  -->
+            <port></port>												<!--  -->
+            <life_time></life_time>										<!--  -->
+        </memcache>
+        <log>
+            <log_raw_messages>true</log_raw_messages>					<!--  -->
+        </log>
+        <bootstrap>
+            <builder>
+                <threads>
+                    <max>10</max>										<!--  -->
+                    <default>1</default>								<!--  -->
+                </threads>
+                <iterations>
+                    <max>200</max>										<!--  -->
+                    <default>5</default>								<!--  -->
+                </iterations>
+                <execution_time>
+                    <max>3600</max>										<!--  -->
+                    <default>0</default>								<!--  -->
+                </execution_time>
+            </builder>
+            <builder_verifier>
+                <verify_time>300</verify_time>							<!--  -->
+            </builder_verifier>
+            <deliver>
+                <threads>
+                    <max>10</max>										<!--  -->
+                    <default>1</default>								<!--  -->
+                </threads>
+                <iterations>
+                    <max>200</max>										<!--  -->
+                    <default>5</default>								<!--  -->
+                </iterations>
+                <execution_time>
+                    <max>3600</max>										<!--  -->
+                    <default>0</default>								<!--  -->
+                </execution_time>
+            </deliver>
+            <deliver_verifier>
+                <verify_time>300</verify_time>							<!--  -->
+            </deliver_verifier>
+        </bootstrap>
+        <localization>
+            <default_locale>en</default_locale>							<!--  -->
+        </localization>
+    </production>
+    <staging extends="production"></staging>
+    <development extends="production"></development>
+</config>

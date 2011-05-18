@@ -1,0 +1,1 @@
+ALTER TABLE `mail_campaignes__recipients` ADD COLUMN `attempt` SMALLINT(2) NOT NULL DEFAULT '0';

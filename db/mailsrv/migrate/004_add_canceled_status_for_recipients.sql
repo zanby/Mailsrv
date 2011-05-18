@@ -1,0 +1,1 @@
+ALTER TABLE `mail_campaignes__recipients` MODIFY COLUMN `status` ENUM('new','in_progress','processed','canceled') NOT NULL DEFAULT 'new';

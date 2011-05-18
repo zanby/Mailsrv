@@ -1,0 +1,7 @@
+SetEnv APPLICATION_ENV development
+
+# Protect files and directories:
+<Files ~ "\.(ini|log|tmpl|.svn)$">
+  order deny,allow
+  deny from all
+</Files>

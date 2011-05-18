@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Tools" targetNamespace="http://warecorp.com/soap/mailserver" xmlns:tns="http://warecorp.com/soap/mailserver" xmlns:impl="http://warecorp.com/soap/mailserver" xmlns:xsd1="http://warecorp.com/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <portType name="ToolsPortType">
+    <operation name="countRawMessages">
+      <input message="tns:CountRawMessagesRequest"/>
+      <output message="tns:CountRawMessagesResponse"/>
+    </operation>
+    <operation name="countRawMessagesByDate" parameterOrder="date">
+      <input message="tns:CountRawMessagesByDateRequest"/>
+      <output message="tns:CountRawMessagesByDateResponse"/>
+    </operation>
+    <operation name="countRawMessagesByCampaign" parameterOrder="campaignId">
+      <input message="tns:CountRawMessagesByCampaignRequest"/>
+      <output message="tns:CountRawMessagesByCampaignResponse"/>
+    </operation>
+    <operation name="countRawMessagesByCampaignAndDate" parameterOrder="campaignId date">
+      <input message="tns:CountRawMessagesByCampaignAndDateRequest"/>
+      <output message="tns:CountRawMessagesByCampaignAndDateResponse"/>
+    </operation>
+    <operation name="countRawMessagesByEmail" parameterOrder="email">
+      <input message="tns:CountRawMessagesByEmailRequest"/>
+      <output message="tns:CountRawMessagesByEmailResponse"/>
+    </operation>
+    <operation name="countRawMessagesByEmailAndCampaign" parameterOrder="email campaignId">
+      <input message="tns:CountRawMessagesByEmailAndCampaignRequest"/>
+      <output message="tns:CountRawMessagesByEmailAndCampaignResponse"/>
+    </operation>
+    <operation name="countRawMessagesByEmailAndCampaignAndDate" parameterOrder="email campaignId date">
+      <input message="tns:CountRawMessagesByEmailAndCampaignAndDateRequest"/>
+      <output message="tns:CountRawMessagesByEmailAndCampaignAndDateResponse"/>
+    </operation>
+    <operation name="countRawMessagesByEmailAndDate" parameterOrder="email date">
+      <input message="tns:CountRawMessagesByEmailAndDateRequest"/>
+      <output message="tns:CountRawMessagesByEmailAndDateResponse"/>
+    </operation>
+    <operation name="clearLogs">
+      <input message="tns:ClearLogsRequest"/>
+      <output message="tns:ClearLogsResponse"/>
+    </operation>
+    <operation name="clearRawMessagesLog">
+      <input message="tns:ClearRawMessagesLogRequest"/>
+      <output message="tns:ClearRawMessagesLogResponse"/>
+    </operation>
+    <operation name="backupLogs" parameterOrder="logFile">
+      <input message="tns:BackupLogsRequest"/>
+      <output message="tns:BackupLogsResponse"/>
+    </operation>
+  </portType>
+  <binding name="ToolsBinding" type="tns:ToolsPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="countRawMessages">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessages"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByDate">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByDate"/>
+      <input>
+        <soap:body parts="date" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByCampaign">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByCampaign"/>
+      <input>
+        <soap:body parts="campaignId" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByCampaignAndDate">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByCampaignAndDate"/>
+      <input>
+        <soap:body parts="campaignId date" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByEmail">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByEmail"/>
+      <input>
+        <soap:body parts="email" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByEmailAndCampaign">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByEmailAndCampaign"/>
+      <input>
+        <soap:body parts="email campaignId" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByEmailAndCampaignAndDate">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByEmailAndCampaignAndDate"/>
+      <input>
+        <soap:body parts="email campaignId date" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="countRawMessagesByEmailAndDate">
+      <soap:operation soapAction="urn:Tools#ToolsServer#countRawMessagesByEmailAndDate"/>
+      <input>
+        <soap:body parts="email date" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="clearLogs">
+      <soap:operation soapAction="urn:Tools#ToolsServer#clearLogs"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="clearRawMessagesLog">
+      <soap:operation soapAction="urn:Tools#ToolsServer#clearRawMessagesLog"/>
+      <input>
+        <soap:body use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="backupLogs">
+      <soap:operation soapAction="urn:Tools#ToolsServer#backupLogs"/>
+      <input>
+        <soap:body parts="logFile" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="CountRawMessagesRequest"/>
+  <message name="CountRawMessagesResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByDateRequest">
+    <part name="date" type="xsd:string"/>
+  </message>
+  <message name="CountRawMessagesByDateResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByCampaignRequest">
+    <part name="campaignId" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByCampaignResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByCampaignAndDateRequest">
+    <part name="campaignId" type="xsd:int"/>
+    <part name="date" type="xsd:string"/>
+  </message>
+  <message name="CountRawMessagesByCampaignAndDateResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByEmailRequest">
+    <part name="email" type="xsd:string"/>
+  </message>
+  <message name="CountRawMessagesByEmailResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByEmailAndCampaignRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="campaignId" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByEmailAndCampaignResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByEmailAndCampaignAndDateRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="campaignId" type="xsd:int"/>
+    <part name="date" type="xsd:string"/>
+  </message>
+  <message name="CountRawMessagesByEmailAndCampaignAndDateResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="CountRawMessagesByEmailAndDateRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="date" type="xsd:string"/>
+  </message>
+  <message name="CountRawMessagesByEmailAndDateResponse">
+    <part name="return" type="xsd:int"/>
+  </message>
+  <message name="ClearLogsRequest"/>
+  <message name="ClearLogsResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="ClearRawMessagesLogRequest"/>
+  <message name="ClearRawMessagesLogResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="BackupLogsRequest">
+    <part name="logFile" type="xsd:string"/>
+  </message>
+  <message name="BackupLogsResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="ToolsService">
+    <port name="ToolsPort" binding="tns:ToolsBinding">
+      <soap:address location="http://mail_server.sukharev.buick/mail.server.tools.php"/>
+    </port>
+  </service>
+</definitions>

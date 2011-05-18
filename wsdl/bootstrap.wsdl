@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Bootstrap" targetNamespace="http://warecorp.com/soap/mailserver" xmlns:tns="http://warecorp.com/soap/mailserver" xmlns:impl="http://warecorp.com/soap/mailserver" xmlns:xsd1="http://warecorp.com/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <portType name="BootstrapPortType">
+    <operation name="startBuilder" parameterOrder="threads iterations executionTime">
+      <input message="tns:StartBuilderRequest"/>
+      <output message="tns:StartBuilderResponse"/>
+    </operation>
+    <operation name="startDeliver" parameterOrder="threads iterations executionTime">
+      <input message="tns:StartDeliverRequest"/>
+      <output message="tns:StartDeliverResponse"/>
+    </operation>
+  </portType>
+  <binding name="BootstrapBinding" type="tns:BootstrapPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="startBuilder">
+      <soap:operation soapAction="urn:Bootstrap#BootstrapServer#startBuilder"/>
+      <input>
+        <soap:body parts="threads iterations executionTime" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="startDeliver">
+      <soap:operation soapAction="urn:Bootstrap#BootstrapServer#startDeliver"/>
+      <input>
+        <soap:body parts="threads iterations executionTime" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://warecorp.com/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="StartBuilderRequest">
+    <part name="threads" type="xsd:int"/>
+    <part name="iterations" type="xsd:int"/>
+    <part name="executionTime" type="xsd:int"/>
+  </message>
+  <message name="StartBuilderResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="StartDeliverRequest">
+    <part name="threads" type="xsd:int"/>
+    <part name="iterations" type="xsd:int"/>
+    <part name="executionTime" type="xsd:int"/>
+  </message>
+  <message name="StartDeliverResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="BootstrapService">
+    <port name="BootstrapPort" binding="tns:BootstrapBinding">
+      <soap:address location="http://mail_server.sukharev.buick/mail.server.service.php"/>
+    </port>
+  </service>
+</definitions>

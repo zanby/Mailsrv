@@ -1,2 +1,4 @@
 config/*.xml
 logs/
+htdocs/.htaccess
+nbproject/
